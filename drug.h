@@ -13,7 +13,7 @@ typedef struct
 Drug* createDrug(int id, char* name, int quantity, int concentration);
 void destroyDrug(Drug* d);
 Drug* copyDrug(Drug* d);
-int validate(Drug d);
+int validate(Drug* d);
 void testCreateDestroyDrug();
 
 //#endif /* DRUG_H_*/
