@@ -37,9 +37,9 @@ void sort(MyList* l, ComparingFunction cmpf, int direction)
 	{
 		for (int j = i + 1; j < getSizeDrugs(l); j++)
 		{
-			Drug p1 = getDrug(l, i);
-			Drug p2 = getDrug(l, j);
-			if (cmpf(&p1, &p2) == direction) 
+			Drug* p1 = getDrug(l, i);
+			Drug* p2 = getDrug(l, j);
+			if (cmpf(p1, p2) == direction) 
 			{
 				setDrug(l, i, p2);
 				setDrug(l, j, p1);
@@ -55,7 +55,7 @@ void testSort()
 	assert(addDrug(l, createDrug(2, "memoplus", 100, 10)) == 1);
 	assert(addDrug(l, createDrug(3, "memoplus1", 100, 10)) == 1);
 	sort(l, cmpName, 1);
-	assert(l->elements[0].id == 2);
-	assert(l->elements[1].id == 3);
-	destroyList(&l);
+	assert(((Drug*)element(l->elements,0))->id == 2);
+	assert(((Drug*)element(l->elements,1))->id == 3);
+	destroyList(l);
 }

@@ -37,7 +37,7 @@ int dim(VectorDinamic* v) {
 
 
 void* element(VectorDinamic* v, int i) {
-	return v->e[i - 1];
+	return v->e[i];
 }
 
 

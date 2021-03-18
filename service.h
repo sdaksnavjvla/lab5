@@ -5,6 +5,7 @@
 typedef struct
 {
 	MyList* allDrugs;
+
 } DrugStore;
 
 DrugStore createDrugStore();

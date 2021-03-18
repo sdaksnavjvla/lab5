@@ -15,6 +15,8 @@ VectorDinamic* creeaza(int cp);
 //destructor
 void distruge(VectorDinamic* v);
 
+void redim(VectorDinamic* v);
+
 //dimensiunea vectorului (numar de elemente)
 int dim(VectorDinamic* v);
 
