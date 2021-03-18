@@ -5,8 +5,6 @@
 typedef struct
 {
 	VectorDinamic* elements;
-	int length;
-	int capacity;
 } MyList;
 
 MyList* createEmpty();

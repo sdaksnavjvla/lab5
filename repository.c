@@ -22,13 +22,13 @@ void destroyList(MyList* l)
 	/*
 		deallocate drugs
 	*/
-	for (int i = 0; i < l->length; i++)
+	for (int i = 0; i < l->elements->n; i++)
 	{
 		destroyDrug(element(l->elements,i));
 	}
 	free(l->elements);
 	distruge(l->elements);
-	l->length = 0;
+	l->elements->n = 0;
 }
 
 Drug* getDrug(MyList* l, int poz)
@@ -57,7 +57,7 @@ int getSizeDrugs(MyList* l)
 	/*
 		return number of elements in the list
 	*/
-	return l->length;
+	return l->elements->n;
 }
 
 void ensureCapacity(MyList* l)
@@ -65,7 +65,7 @@ void ensureCapacity(MyList* l)
 	/*
 		allocate more memory if needed
 	*/
-	if (l->length < l->capacity)
+	if (l->elements->n < l->elements->cp)
 		return; //there is space
 
 	redim(l->elements);
@@ -96,10 +96,10 @@ void deleteDrug(MyList* l, int pos)
 	/*
 		delete drug d given the position
 	*/
-	for (int i = pos; i < l->length - 1; i++)
+	for (int i = pos; i < l->elements->n - 1; i++)
 		l->elements[i] = l->elements[i + 1];
 	//destroyDrug(&l->elements[l->length]);
-	l->length--;
+	l->elements->n--;
 }
 
 MyList* copyList(MyList* l)
