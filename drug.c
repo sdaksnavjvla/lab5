@@ -75,7 +75,7 @@ void testCreateDestroyDrug()
 	assert(d->quantity == 200);
 	assert(d->concentration == 10);
 	
-	destroyDrug(&d);
+	destroyDrug(d);
 	assert(d->id == -1);
 	assert(d->name == NULL);
 	assert(d->quantity == -1);
