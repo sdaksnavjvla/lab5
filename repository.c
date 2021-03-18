@@ -112,7 +112,7 @@ MyList* copyList(MyList* l)
 	for (int i = 0; i < getSizeDrugs(l); i++)
 	{
 		Drug* d = getDrug(l, i);
-		addDrug(rez, copyDrug(&d));
+		addDrug(rez, copyDrug(d));
 	}
 	return rez;
 }
@@ -171,8 +171,8 @@ MyList* copyList(MyList* l)
 void testCreateList()
 {
 	MyList *l = createEmpty();
-	assert(getSizeDrugs(&l) == 0);
-	destroyList(&l);
+	assert(getSizeDrugs(l) == 0);
+	destroyList(l);
 }
 
 void testIterateList()
@@ -185,8 +185,8 @@ void testIterateList()
 	destroyDrug(d1);
 	Drug* d2 = createDrug(3, "ospamox", 100, 10);
 	assert(addDrug(l, d2) == 2);
-	destroyDrug(&d2);
-	assert(getSizeDrugs(&l) == 2);
+	destroyDrug(d2);
+	assert(getSizeDrugs(l) == 2);
 	Drug* d = getDrug(l, 0);
 
 	assert(d->id == 1);
@@ -210,7 +210,7 @@ void testEditDrug()
 	editDrug(l, createDrug(2, "a", 5, 10), 0);
 	destroyDrug(d1);
 
-	Drug *d = getDrug(&l, 0);
+	Drug *d = getDrug(l, 0);
 	assert(d->id == 2);
 	assert(strcmp(d->name, "a") == 0);
 	assert(d->quantity == 5);
@@ -238,10 +238,10 @@ void testCopyList()
 	MyList* l = createEmpty();
 	addDrug(l, createDrug(1, "ospamox", 200, 10));
 	addDrug(l, createDrug(2, "memoplus", 100, 10));
-	MyList* l2 = copyList(&l);
+	MyList* l2 = copyList(l);
 	assert(getSizeDrugs(l2) == 2);
 	destroyList(l);
-	destroyList(&l2);
+	destroyList(l2);
 }
 
 void testMyList()
