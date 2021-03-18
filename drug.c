@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-
 #include "drug.h"
 #include "utils.h"
 
@@ -46,24 +45,24 @@ Drug* copyDrug(Drug* d)
 	return createDrug(d->id, d->name, d->quantity, d->concentration);
 }
 
-int validate(Drug d)
+int validate(Drug* d)
 {
 	//if (isInt(d.id) == 0)
 		//return -1;
 	//else
-		if (d.id < 0)
+		if (d->id < 0)
 			return 1;
-	if (strlen(d.name) == 0)
+	if (strlen(d->name) == 0)
 		return 2;
 	//if (isInt(d.quantity) == 0)
 		//return -3;
 	//else
-		if (d.quantity < 0)
+		if (d->quantity < 0)
 			return 3;
 	//if (isInt(d.concentration) == 0)
 		//return -4;
 	//else
-		if (d.concentration < 0)
+		if (d->concentration < 0)
 			return 4;
 	return 0;
 }

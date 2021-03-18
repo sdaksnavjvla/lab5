@@ -4,7 +4,7 @@
 
 typedef struct
 {
-	MyList allDrugs;
+	MyList* allDrugs;
 } DrugStore;
 
 DrugStore createDrugStore();
@@ -16,6 +16,6 @@ int findDrugService(DrugStore* store, int id);
 int deleteDrugService(DrugStore* store, int id);
 MyList sortByName(DrugStore* store, int direction);
 MyList sortByQuantity(DrugStore* store, int direction);
-MyList filterByQuantity(DrugStore* store, int value);
-MyList filterByName(DrugStore* store, char value);
+MyList* filterByQuantity(DrugStore* store, int value);
+MyList* filterByName(DrugStore* store, char value);
 void testService();
