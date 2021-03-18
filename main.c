@@ -54,8 +54,8 @@ void printAllDrugs(MyList* l)
 		printf("Drugs:\n");
 		for (int i = 0; i < getSizeDrugs(l); i++)
 		{
-			Drug d = getDrug(l, i);
-			printf("Id: %d; Name: %s; Quantity: %d, Concentration: %d\n", d.id, d.name, d.quantity, d.concentration);
+			Drug* d = getDrug(l, i);
+			printf("Id: %d; Name: %s; Quantity: %d, Concentration: %d\n", d->id, d->name, d->quantity, d->concentration);
 		}
 	}
 	printf("\n");
@@ -63,9 +63,9 @@ void printAllDrugs(MyList* l)
 
 void showAllDrugs(DrugStore* store)
 {
-	MyList allDrugs = getAllDrugs(store);
-	printAllDrugs(&allDrugs);
-	destroyList(&allDrugs);
+	MyList* allDrugs = getAllDrugs(store);
+	printAllDrugs(allDrugs);
+	destroyList(allDrugs);
 }
 
 void editNewDrug(DrugStore* store)
@@ -138,9 +138,9 @@ void orderByName(DrugStore* store, int direction)
 		sort by name
 		direction can be ascending (1) or descending (-1)
 	*/
-	MyList allDrugs = sortByName(store, direction);
-	printAllDrugs(&allDrugs);
-	destroyList(&allDrugs);
+	MyList* allDrugs = sortByName(store, direction);
+	printAllDrugs(allDrugs);
+	destroyList(allDrugs);
 }
 
 void orderByQuantity(DrugStore* store, int direction)
@@ -149,9 +149,9 @@ void orderByQuantity(DrugStore* store, int direction)
 		sort by quantity
 		direction can be ascending (1) or descending (-1)
 	*/
-	MyList allDrugs = sortByQuantity(store, direction);
-	printAllDrugs(&allDrugs);
-	destroyList(&allDrugs);
+	MyList* allDrugs = sortByQuantity(store, direction);
+	printAllDrugs(allDrugs);
+	destroyList(allDrugs);
 }
 
 void filterDrugsByName(DrugStore* store)
@@ -170,9 +170,9 @@ void filterDrugsByName(DrugStore* store)
 		printf("Strings are not allowed, only single characters.\n");
 	else
 	{
-		MyList allDrugs = filterByName(store, string[0]);
-		printAllDrugs(&allDrugs);
-		destroyList(&allDrugs);
+		MyList* allDrugs = filterByName(store, string[0]);
+		printAllDrugs(allDrugs);
+		destroyList(allDrugs);
 	}
 }
 
@@ -194,9 +194,9 @@ void filterDrugsByQuantity(DrugStore* store)
 			printf("This field can only be a positive integer.\n");
 		else
 		{
-			MyList allDrugs = filterByQuantity(store, atoi(value));
-			printAllDrugs(&allDrugs);
-			destroyList(&allDrugs);
+			MyList* allDrugs = filterByQuantity(store, atoi(value));
+			printAllDrugs(allDrugs);
+			destroyList(allDrugs);
 		}
 	}
 }
