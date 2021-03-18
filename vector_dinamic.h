@@ -1,3 +1,4 @@
+#pragma once
 //tip de data generic (pentru moment este intreg)
 typedef struct {
 	//capacitate

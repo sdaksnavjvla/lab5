@@ -81,6 +81,7 @@ int addDrug(MyList* l, Drug* d)
 	*/
 	//ensureCapacity(l);
 	adaugaSfarsit(l->elements, d);
+	return 1;
 }
 
 void editDrug(MyList* l, Drug* d, int pos)
