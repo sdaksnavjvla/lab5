@@ -14,7 +14,7 @@ DrugStore createDrugStore()
 
 void destroyStore(DrugStore* store)
 {
-	destroyList(&store->allDrugs);
+	destroyList(store->allDrugs);
 }
 
 int addDrugService(DrugStore* store, int id, char* name, int quantity, int concentration)
@@ -29,7 +29,7 @@ int addDrugService(DrugStore* store, int id, char* name, int quantity, int conce
 		destroyDrug(d);
 		return errorCode;
 	}
-	int repoError = addDrug(&store->allDrugs, d);
+	int repoError = addDrug(store->allDrugs, d);
 	if (repoError == 0)
 	{
 		destroyDrug(d);
@@ -38,7 +38,7 @@ int addDrugService(DrugStore* store, int id, char* name, int quantity, int conce
 	return 0;
 }
 
-MyList getAllDrugs(DrugStore* store)
+MyList* getAllDrugs(DrugStore* store)
 {
 	/*
 		Filter pets in the store
@@ -54,10 +54,10 @@ int findDrugService(DrugStore* store, int id)
 		find drug given the id
 		return -1 if not found, the position otherwise
 	*/
-	for (int i = 0; i < getSizeDrugs(&store->allDrugs); i++)
+	for (int i = 0; i < getSizeDrugs(store->allDrugs); i++)
 	{
-		Drug d = getDrug(store->allDrugs, i);
-		if (d.id == id)
+		Drug* d = getDrug(store->allDrugs, i);
+		if (d->id == id)
 			return i;
 	}
 	return -1;
@@ -97,7 +97,7 @@ int deleteDrugService(DrugStore* store, int id)
 	int pos = findDrugService(store, id);
 	if (pos == -1)
 		return 10;
-	Drug d = getDrug(store->allDrugs, pos);
+	Drug *d = getDrug(store->allDrugs, pos);
 	/*
 	int errorCode = validate(d);
 	if (errorCode != 0)
@@ -171,7 +171,7 @@ void testAddDrug()
 	addDrugService(&store, 1, "a", 200, 10);
 	addDrugService(&store, 2, "b", 200, 20);
 	assert(addDrugService(&store, 2, "b", 200, 20) == 10);
-	assert(getSizeDrugs(&store.allDrugs) == 2);
+	assert(getSizeDrugs(store.allDrugs) == 2);
 	assert(findDrugService(&store, 1) == 0);
 	assert(findDrugService(&store, 3) == -1);
 	int errorCode = addDrugService(&store, -1, "a", 200, 10);
