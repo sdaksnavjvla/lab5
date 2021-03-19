@@ -26,3 +26,5 @@ void* element(VectorDinamic* v, int);
 
 //adaugare la sfarsit
 void adaugaSfarsit(VectorDinamic* v, void* e);
+
+void stergereElem(VectorDinamic* v, int pos);

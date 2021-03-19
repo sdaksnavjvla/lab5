@@ -46,3 +46,9 @@ void adaugaSfarsit(VectorDinamic* v, void* e) {
 		redim(v);
 	v->e[(v->n)++] = e;
 }
+
+void stergereElem(VectorDinamic* v, int pos) {
+	v->n--;
+	for (int i = pos; i < v->n; i++)
+		v->e[i] = v->e[i + 1];
+}

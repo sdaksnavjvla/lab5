@@ -110,10 +110,7 @@ void deleteDrug(MyList* l, int pos)
 	/*
 		delete drug d given the position
 	*/
-	for (int i = pos; i < l->elements->n - 1; i++)
-		l->elements[i] = l->elements[i + 1];
-	//destroyDrug(&l->elements[l->length]);
-	l->elements->n--;
+	stergereElem(l->elements, pos);
 }
 
 MyList* copyList(MyList* l)
