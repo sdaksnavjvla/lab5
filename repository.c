@@ -5,6 +5,7 @@
 #include "repository.h"
 #include "vector_dinamic.h"
 
+
 MyList* createEmpty()
 {
 	/*
@@ -14,8 +15,10 @@ MyList* createEmpty()
 	rez = malloc(sizeof(MyList*));
 
 	rez->elements = creeaza(1);
+	//rez->undo = creeaza(1);
 	return rez;
 }
+
 
 void destroyList(MyList* l)
 {
@@ -28,8 +31,19 @@ void destroyList(MyList* l)
 	}
 	distruge(l->elements);
 	l->elements->n = 0;
+
+	/*
+	for (int i = 0; i < l->undo->n; i++)
+	{
+		distruge(element(l->undo, i));
+	}
+	distruge(l->undo);
+	
+	l->undo->n = 0;
+	*/
 	free(l);
 }
+
 
 Drug* getDrug(MyList* l, int poz)
 {
@@ -41,6 +55,7 @@ Drug* getDrug(MyList* l, int poz)
 	return element(l->elements, poz);
 }
 
+
 Drug* setDrug(MyList* l, int poz, Drug* d)
 {
 	/*
@@ -51,6 +66,7 @@ Drug* setDrug(MyList* l, int poz, Drug* d)
 	l->elements->e[poz] = d;
 	return rez;
 }
+
 
 int getSizeDrugs(MyList* l)
 {

@@ -14,6 +14,7 @@ int addDrugService(DrugStore* store, int id, char* name, int quantity, int conce
 MyList* getAllDrugs(DrugStore* store);
 int editDrugService(DrugStore* store, int id, char* name, int quantity, int concentration);
 int findDrugService(DrugStore* store, int id);
+MyList* filterById(DrugStore* store, int parity);
 int deleteDrugService(DrugStore* store, int id);
 MyList* sortByName(DrugStore* store, int direction);
 MyList* sortByQuantity(DrugStore* store, int direction);

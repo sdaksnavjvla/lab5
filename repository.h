@@ -5,6 +5,7 @@
 typedef struct
 {
 	VectorDinamic* elements;
+	//VectorDinamic* undo;
 } MyList;
 
 MyList* createEmpty();

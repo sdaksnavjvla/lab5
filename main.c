@@ -201,6 +201,32 @@ void filterDrugsByQuantity(DrugStore* store)
 	}
 }
 
+void filterDrugsByID(DrugStore* store)
+{
+	/*
+		filter by quantity
+		show drugs whose quantity is less than given value
+	*/
+	char value[1000];
+	printf("Give case(0 for even,1 for odd): ");
+	scanf_s("%s", value, 1000);
+	int typeError = typeValidator(value, "name", "100", "1");
+	if (typeError == 0)
+		printf("This field can only be a positive integer.\n");
+	else
+	{
+		if (value < 0)
+			printf("This field can only be a positive integer.\n");
+		else
+		{
+			MyList* allDrugs = filterById(store, atoi(value));
+			printAllDrugs(allDrugs);
+			destroyList(allDrugs);
+		}
+	}
+}
+
+
 void testAll()
 {
 	testCreateDestroyDrug();
@@ -216,7 +242,7 @@ void run()
 	DrugStore store = createDrugStore();
 	int kill = 1;
 	while (kill) {
-		printf("1. Add Drug\n2. Show all drugs\n3. Edit drug.\n4. Delete drug\n5. Order drugs by name (ascending)\n6. Order drugs by name (descending)\n7. Order drugs by quantity(ascending)\n8. Order drugs by quantity(descending)\n9. Filter by initial name\n10. Filter by quantity\n0. Exit\nGive command:");
+		printf("1. Add Drug\n2. Show all drugs\n3. Edit drug.\n4. Delete drug\n5. Order drugs by name (ascending)\n6. Order drugs by name (descending)\n7. Order drugs by quantity(ascending)\n8. Order drugs by quantity(descending)\n9. Filter by initial name\n10. Filter by quantity\n11. Filter by id parity\n12.UNDO\n0. Exit\nGive command:");
 		int cmd = 0;
 		scanf_s("%d", &cmd);
 		switch (cmd) {
@@ -249,6 +275,9 @@ void run()
 			break;
 		case 10:
 			filterDrugsByQuantity(&store);
+			break;
+		case 11:
+			filterDrugsByID(&store);
 			break;
 		case 0:
 			printf("Bye bye");

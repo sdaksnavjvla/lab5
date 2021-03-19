@@ -4,6 +4,7 @@
 
 #include "service.h"
 #include "mysort.h"
+#include <stdio.h>
 
 DrugStore createDrugStore()
 {
@@ -165,6 +166,31 @@ MyList* filterByName(DrugStore* store, char value)
 	return rez;
 }
 
+MyList* filterById(DrugStore* store,int parity)
+{
+	/*
+		filter drugs
+		return all odd/even id-ed drugs
+	*/
+	MyList* rez = createEmpty();
+	for (int i = 0; i < getSizeDrugs(store->allDrugs); i++)
+	{
+		Drug* p = getDrug(store->allDrugs, i);
+		if (parity == 0)
+		{
+			if (p->id%2 == 0)
+				addDrug(rez, copyDrug(p));
+		}
+		else if (parity == 1)
+		{
+			if (p->id % 2 != 0)
+				addDrug(rez, copyDrug(p));
+		}
+		
+	}
+	return rez;
+}
+
 void testAddDrug() 
 {
 	DrugStore store = createDrugStore();
@@ -247,6 +273,23 @@ void testFilterByQuantityAndName()
 	destroyStore(&store);
 }
 
+
+void testFilterByID()
+{
+	DrugStore store = createDrugStore();
+	addDrugService(&store, 1, "a", 200, 10);
+	addDrugService(&store, 2, "ab", 100, 20);
+	addDrugService(&store, 3, "c", 250, 20);
+	MyList* l = filterById(&store, 0);
+	//assert(((Drug*)(element(l->elements,0)))->id == 2);
+	destroyList(l);
+	MyList* l1 = filterById(&store, 1);
+	//assert(((Drug*)(element(l->elements, 0)))->id == 1);
+	destroyList(l1);
+	destroyStore(&store);
+}
+
+
 void testService()
 {
 	testAddDrug();
@@ -254,4 +297,5 @@ void testService()
 	testDeleteDrugService();
 	testSortByNameAndQuantity();
 	testFilterByQuantityAndName();
+	testFilterByID();
 }
