@@ -79,7 +79,21 @@ int addDrug(MyList* l, Drug* d)
 		return 0 if drug could not be added, 1 otherwise
 	*/
 	//ensureCapacity(l);
+	for (int i = 0; i < getSizeDrugs(l); i++)
+	{
+		Drug* currentDrug = getDrug(l, i);
+		if (currentDrug->id == d->id)
+			return 0;
+		else
+			if (strcmp(currentDrug->name, d->name) == 0)
+			{
+				currentDrug->quantity += d->quantity;
+				setDrug(l, i, currentDrug);
+				return 2;
+			}
+	}
 	adaugaSfarsit(l->elements, d);
+	ensureCapacity(l);
 	return 1;
 }
 
@@ -116,31 +130,6 @@ MyList* copyList(MyList* l)
 	}
 	return rez;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
