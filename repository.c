@@ -26,7 +26,6 @@ void destroyList(MyList* l)
 	{
 		destroyDrug(element(l->elements,i));
 	}
-	free(l->elements);
 	distruge(l->elements);
 	l->elements->n = 0;
 }

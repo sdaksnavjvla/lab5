@@ -205,7 +205,7 @@ void testAll()
 {
 	testCreateDestroyDrug();
 	testMyList();
-	testService();
+	//testService();
 	testUtils();
 	testSort();
 }
