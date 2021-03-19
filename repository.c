@@ -28,6 +28,7 @@ void destroyList(MyList* l)
 	}
 	distruge(l->elements);
 	l->elements->n = 0;
+	free(l);
 }
 
 Drug* getDrug(MyList* l, int poz)
@@ -56,19 +57,10 @@ int getSizeDrugs(MyList* l)
 	/*
 		return number of elements in the list
 	*/
-	return l->elements->n;
+	return dim(l->elements);
 }
 
-void ensureCapacity(MyList* l)
-{
-	/*
-		allocate more memory if needed
-	*/
-	if (l->elements->n < l->elements->cp)
-		return; //there is space
 
-	redim(l->elements);
-}
 
 int addDrug(MyList* l, Drug* d)
 {
@@ -93,7 +85,6 @@ int addDrug(MyList* l, Drug* d)
 			}
 	}
 	adaugaSfarsit(l->elements, d);
-	ensureCapacity(l);
 	return 1;
 }
 
@@ -173,6 +164,8 @@ void testIterateList()
 	assert(addDrug(l, d2) == 2);
 	destroyDrug(d2);
 	assert(getSizeDrugs(l) == 2);
+	Drug* d3 = createDrug(4, "xanax", 100, 100);
+	addDrug(l, d3);
 	Drug* d = getDrug(l, 0);
 
 	assert(d->id == 1);
@@ -182,7 +175,6 @@ void testIterateList()
 	d = getDrug(l, 1);
 	assert(d->id == 2);
 	destroyList(l);
-	assert(getSizeDrugs(l) == 0);
 }
 
 void testEditDrug()
